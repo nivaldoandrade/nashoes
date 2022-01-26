@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux';
 import produce from 'immer';
+import { toast } from 'react-toastify';
 
 import { ICartState } from './types';
 
@@ -30,6 +31,8 @@ function cart(state = INITIAL_STATE, action: AnyAction) {
 
         draft.failureInStock.push(productId);
 
+        toast.info('Quantidade solicitada fora de estoque!');
+
         break;
       case 'REMOVE_PRODUCT_FROM_CART':
         const { productId: id } = action.payload;
@@ -39,6 +42,8 @@ function cart(state = INITIAL_STATE, action: AnyAction) {
         );
 
         draft.items.splice(removeProductToCartIndex, 1);
+
+        toast.warning('Produto removido com sucesso!');
         break;
       default:
         return draft;

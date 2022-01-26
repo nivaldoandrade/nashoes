@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
 
-export const Product = styled.div`
+interface ProductProps {
+  isStock: boolean;
+}
+
+export const Product = styled.div<ProductProps>`
+  opacity: ${props => (props.isStock ? 1 : 0.7)};
   background: var(--white);
   padding: 1.25rem;
   border-radius: 0.25rem;
@@ -35,6 +40,10 @@ export const Product = styled.div`
     color: var(--white);
 
     transition: all 200ms ease-in-out;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
 
     &:hover {
       background: ${darken(0.2, '#7159c1')};

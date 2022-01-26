@@ -5,6 +5,7 @@ import {
   addProductToCartRequest,
   removeProductToCart,
 } from '../../store/modules/cart/actions';
+
 import { ICartItem } from '../../store/modules/cart/types';
 
 export function CartItem({ product, quantity, subtotal }: ICartItem) {
